@@ -1,0 +1,28 @@
+server:
+  port: 8080
+  servlet:
+    session:
+      timeout: 10s
+
+spring:
+  application:
+    name: order-service
+
+  datasource:
+    username: 'postgres'
+    url: jdbc:postgresql://localhost:5432/elibrarian-ocihantask
+    password: 'postgres'
+
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: 'true'
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+ocihan:
+  openapi:
+    dev-url: http://localhost:8080
+    prod-url: https://oguzcihan.github.io/#home

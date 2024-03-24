@@ -13,6 +13,14 @@ import static org.cihan.elibrarian.user.models.Permission.*;
 @Getter
 @RequiredArgsConstructor
 public enum Role {
+    USER(
+            Set.of(
+                    USER_READ,
+                    USER_UPDATE,
+                    USER_DELETE,
+                    USER_CREATE
+            )
+    ),
     ADMIN(
             Set.of(
                     ADMIN_READ,
@@ -24,15 +32,8 @@ public enum Role {
                     USER_DELETE,
                     USER_CREATE
             )
-    ),
-    USER(
-            Set.of(
-                    USER_READ,
-                    USER_UPDATE,
-                    USER_DELETE,
-                    USER_CREATE
-            )
     );
+
 
     private final Set<Permission> permissions;
 

@@ -8,12 +8,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.cihan.elibrarian.security.token.Token;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
-import java.util.List;
 
 @Data
 @Builder
@@ -32,7 +30,7 @@ public class User implements UserDetails {
 
     @NotBlank
     @Size(max = 20)
-    private String username;
+    private String userName;
 
     @NotBlank
     @Size(max = 50)
@@ -58,7 +56,7 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return username;
+        return userName;
     }
 
     @Override

@@ -5,8 +5,11 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.cihan.elibrarian.cart.models.CartItem;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Builder
@@ -27,9 +30,15 @@ public class Book {
     @Column(name = "author")
     private String author;
 
-    @Column(name = "language")
-    private String language;
+    @Column(name = "publisher")
+    private String publisher;
 
     @Column(name = "price")
     private BigDecimal price;
+
+    @Column(name = "stock_quantity")
+    private int stockQuantity;
+
+    @OneToMany(mappedBy = "product", cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
+    private List<CartItem> products = new ArrayList<>();
 }

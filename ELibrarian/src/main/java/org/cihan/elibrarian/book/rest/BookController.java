@@ -45,7 +45,7 @@ public class BookController {
 
     @PostMapping
     @PreAuthorize("hasAuthority('admin:create')")
-    public ResponseEntity<Book> createBook(BookRequest bookRequest) throws URISyntaxException {
+    public ResponseEntity<Book> createBook(@RequestBody BookRequest bookRequest) throws URISyntaxException {
         Book result = bookService.createBook(bookRequest);
         return ResponseEntity.created(new URI("/api/v1/books/" + result.getId())).body(result);
     }
@@ -59,7 +59,7 @@ public class BookController {
 
     @PutMapping
     @PreAuthorize("hasAuthority('admin:update')")
-    public ResponseEntity<Book> updateBook(Book book) {
+    public ResponseEntity<Book> updateBook(@RequestBody Book book) {
         Book result = bookService.updateBook(book);
         return ResponseEntity.ok(result);
     }

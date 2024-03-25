@@ -15,6 +15,7 @@ public class BookRequest {
 
     private String title;
     private String author;
-    private String language;
+    private String publisher;
     private BigDecimal price;
+    private int stockQuantity;
 }

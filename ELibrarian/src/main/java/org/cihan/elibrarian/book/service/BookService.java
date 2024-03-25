@@ -5,10 +5,12 @@ import org.cihan.elibrarian.auth.service.AuthService;
 import org.cihan.elibrarian.book.model.Book;
 import org.cihan.elibrarian.book.model.BookRequest;
 import org.cihan.elibrarian.book.repository.BookRepository;
+import org.cihan.elibrarian.exceptions.GenException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 
@@ -24,6 +26,10 @@ public class BookService {
     }
 
     public Book getBookById(Long id) {
+        log.info("getBookById called with id: " + id);
+        if (id == null) {
+            throw new GenException("Book id cannot be null", HttpStatus.BAD_REQUEST.value());
+        }
         return bookRepository.findById(id).orElse(null);
     }
 
@@ -32,8 +38,9 @@ public class BookService {
         Book book = Book.builder()
                 .title(bookRequest.getTitle())
                 .author(bookRequest.getAuthor())
-                .language(bookRequest.getLanguage())
+                .publisher(bookRequest.getPublisher())
                 .price(bookRequest.getPrice())
+                .stockQuantity(bookRequest.getStockQuantity())
                 .build();
 
         return bookRepository.save(book);
@@ -41,12 +48,18 @@ public class BookService {
 
     public Book updateBook(Book book) {
         log.info("updateBook called with book: " + book.getId());
+        if (book.getId() == null) {
+            throw new GenException("Book id cannot be null", HttpStatus.BAD_REQUEST.value());
+        }
         return bookRepository.save(book);
     }
 
 
     public void deleteBookById(Long id) {
         log.info("deleteBookById called with id: " + id);
+        if (id == null) {
+            throw new GenException("Book id cannot be null", HttpStatus.BAD_REQUEST.value());
+        }
         bookRepository.deleteById(id);
     }
 

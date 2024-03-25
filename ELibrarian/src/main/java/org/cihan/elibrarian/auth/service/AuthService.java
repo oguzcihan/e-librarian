@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import org.cihan.elibrarian.auth.models.AuthResponse;
 import org.cihan.elibrarian.auth.models.LoginRequest;
 import org.cihan.elibrarian.auth.models.RegisterRequest;
+import org.cihan.elibrarian.cart.models.Cart;
+import org.cihan.elibrarian.cart.repository.CartRepository;
 import org.cihan.elibrarian.exceptions.GenException;
 import org.cihan.elibrarian.security.jwt.JwtService;
 import org.cihan.elibrarian.security.token.Token;
@@ -33,6 +35,7 @@ public class AuthService {
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
+    private final CartRepository cartRepository;
 
     public AuthResponse login(LoginRequest loginRequest) {
         log.info("Login request: {}", loginRequest);
@@ -51,6 +54,10 @@ public class AuthService {
                 .orElseThrow();
         var jwtToken = jwtService.generateToken(user);
         var refreshToken = jwtService.generateRefreshToken(user);
+        if (jwtToken != null && refreshToken != null) {
+            //kullanıcı girişi başarılı olduğunda kullanıcıya ait sepet oluşturulur
+            createCart(user);
+        }
         return AuthResponse.builder()
                 .accessToken(jwtToken)
                 .refreshToken(refreshToken)
@@ -106,5 +113,17 @@ public class AuthService {
                 new ObjectMapper().writeValue(response.getOutputStream(), authResponse);
             }
         }
+    }
+
+    /**
+     * Kullanıcı sepetini oluşturur.
+     */
+    private void createCart(User user) {
+        var existsCar = cartRepository.existsByUser(user);
+        if (!existsCar) {
+            Cart cart = Cart.builder().user(user).build();
+            cartRepository.save(cart);
+        }
+
     }
 }

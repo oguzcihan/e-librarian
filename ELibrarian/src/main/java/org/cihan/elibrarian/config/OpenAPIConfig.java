@@ -42,7 +42,7 @@ public class OpenAPIConfig {
                 .title("e-Librarian API")
                 .version("1.0")
                 .contact(contact)
-                .description("Task api implementation for iwallet.His name is e-librarian").termsOfService("https://oguzcihan.github.io/#home")
+                .description("His name is e-librarian").termsOfService("https://oguzcihan.github.io/#home")
                 .license(mitLicense);
 
         // JWT Authentication

@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.cihan.elibrarian.book.model.Book;
 import org.cihan.elibrarian.user.models.User;
 
 import java.math.BigDecimal;
@@ -27,10 +26,6 @@ public class Cart {
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
-
-    @ManyToOne
-    @JoinColumn(name = "book_id")
-    private Book book;
 
     @OneToMany(mappedBy = "cart", cascade = {CascadeType.PERSIST, CascadeType.MERGE}, orphanRemoval = true)
     private List<CartItem> cartItems = new ArrayList<>();

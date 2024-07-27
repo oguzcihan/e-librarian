@@ -13,9 +13,10 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 public class BookRequest {
 
-    private String title;
+    private String name;
     private String author;
     private String publisher;
     private BigDecimal price;
     private int stockQuantity;
+    private Long categoryId;
 }

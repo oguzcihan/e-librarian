@@ -24,8 +24,8 @@ public class Book {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
-    @Column(name = "title")
-    private String title;
+    @Column(name = "name")
+    private String name;
 
     @Column(name = "author")
     private String author;
@@ -39,6 +39,10 @@ public class Book {
     @Column(name = "stock_quantity")
     private int stockQuantity;
 
-    @OneToMany(mappedBy = "product", cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
-    private List<CartItem> products = new ArrayList<>();
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
+
+    @OneToMany(mappedBy = "book", cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
+    private List<CartItem> books = new ArrayList<>();
 }

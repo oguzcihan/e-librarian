@@ -1,7 +1,7 @@
 package org.cihan.elibrarian.book.service;
 
 import lombok.RequiredArgsConstructor;
-import org.cihan.elibrarian.auth.service.AuthService;
+import org.cihan.elibrarian.app.auth.service.AuthService;
 import org.cihan.elibrarian.book.model.Book;
 import org.cihan.elibrarian.book.model.BookRequest;
 import org.cihan.elibrarian.book.model.Category;

@@ -4,7 +4,7 @@ package org.cihan.elibrarian.book.rest;
 import org.cihan.elibrarian.book.model.Book;
 import org.cihan.elibrarian.book.model.BookRequest;
 import org.cihan.elibrarian.book.service.BookService;
-import org.cihan.elibrarian.utils.PaginationUtil;
+import org.cihan.elibrarian.app.utils.PaginationUtil;
 import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.cihan.elibrarian.user.models.User;
+import org.cihan.elibrarian.app.user.models.User;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;

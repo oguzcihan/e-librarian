@@ -1,10 +1,10 @@
-package org.cihan.elibrarian;
+package org.cihan.elibrarian.app;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = "org.cihan.elibrarian")
 @EnableJpaAuditing(auditorAwareRef = "auditorAware")
 public class ELibrarianApplication {
 

@@ -1,7 +1,7 @@
-package org.cihan.elibrarian.config;
+package org.cihan.elibrarian.app.config;
 
 import lombok.RequiredArgsConstructor;
-import org.cihan.elibrarian.security.jwt.AuthenticationFilterJwt;
+import org.cihan.elibrarian.app.security.jwt.AuthenticationFilterJwt;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;

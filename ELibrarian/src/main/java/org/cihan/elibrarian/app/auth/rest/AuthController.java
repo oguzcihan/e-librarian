@@ -1,12 +1,12 @@
-package org.cihan.elibrarian.auth.rest;
+package org.cihan.elibrarian.app.auth.rest;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
-import org.cihan.elibrarian.auth.models.AuthResponse;
-import org.cihan.elibrarian.auth.models.LoginRequest;
-import org.cihan.elibrarian.auth.models.RegisterRequest;
-import org.cihan.elibrarian.auth.service.AuthService;
+import org.cihan.elibrarian.app.auth.service.AuthService;
+import org.cihan.elibrarian.app.auth.models.AuthResponse;
+import org.cihan.elibrarian.app.auth.models.LoginRequest;
+import org.cihan.elibrarian.app.auth.models.RegisterRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

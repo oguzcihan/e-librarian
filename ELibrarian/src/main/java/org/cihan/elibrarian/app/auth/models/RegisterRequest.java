@@ -1,4 +1,4 @@
-package org.cihan.elibrarian.auth.models;
+package org.cihan.elibrarian.app.auth.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

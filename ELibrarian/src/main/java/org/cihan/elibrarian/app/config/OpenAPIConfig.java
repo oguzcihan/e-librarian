@@ -1,4 +1,4 @@
-package org.cihan.elibrarian.config;
+package org.cihan.elibrarian.app.config;
 
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Contact;

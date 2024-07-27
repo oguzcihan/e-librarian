@@ -1,4 +1,4 @@
-package org.cihan.elibrarian.security.token;
+package org.cihan.elibrarian.app.security.token;
 
 public enum TokenType {
     ACCESS,

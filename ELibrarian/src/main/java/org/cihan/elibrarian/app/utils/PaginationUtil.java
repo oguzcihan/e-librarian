@@ -1,4 +1,4 @@
-package org.cihan.elibrarian.utils;
+package org.cihan.elibrarian.app.utils;
 
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpHeaders;

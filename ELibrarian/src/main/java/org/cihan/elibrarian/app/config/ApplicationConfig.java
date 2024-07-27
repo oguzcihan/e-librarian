@@ -1,4 +1,4 @@
-package org.cihan.elibrarian.config;
+package org.cihan.elibrarian.app.config;
 
 import lombok.RequiredArgsConstructor;
 import org.cihan.elibrarian.user.repository.UserRepository;

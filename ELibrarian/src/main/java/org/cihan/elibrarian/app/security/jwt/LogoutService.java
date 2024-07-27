@@ -1,4 +1,4 @@
-package org.cihan.elibrarian.security.jwt;
+package org.cihan.elibrarian.app.security.jwt;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

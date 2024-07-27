@@ -1,11 +1,11 @@
-package org.cihan.elibrarian.auth.models;
+package org.cihan.elibrarian.app.auth.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.cihan.elibrarian.security.token.Token;
+import org.cihan.elibrarian.app.security.token.Token;
 
 @Data
 @Builder

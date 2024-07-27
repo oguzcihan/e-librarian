@@ -1,4 +1,4 @@
-package org.cihan.elibrarian.security.jwt;
+package org.cihan.elibrarian.app.security.jwt;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

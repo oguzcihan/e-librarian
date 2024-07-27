@@ -1,4 +1,4 @@
-package org.cihan.elibrarian.config;
+package org.cihan.elibrarian.app.config;
 
 import org.cihan.elibrarian.user.models.User;
 import org.springframework.data.domain.AuditorAware;

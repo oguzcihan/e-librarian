@@ -13,7 +13,7 @@ import org.cihan.elibrarian.user.models.Role;
 public class RegisterRequest {
     private String firstname;
     private String lastname;
-    private String username;
+    private String userName;
     private String email;
     private String password;
     private Role role;

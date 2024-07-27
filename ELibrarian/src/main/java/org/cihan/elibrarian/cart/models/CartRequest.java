@@ -1,4 +1,4 @@
-package org.cihan.elibrarian.auth.models;
+package org.cihan.elibrarian.cart.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class LoginRequest {
-    private String userName;
-    private String password;
+public class CartRequest {
+    private Long bookId;
+    private int quantity;
 }

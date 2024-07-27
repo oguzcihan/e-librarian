@@ -7,12 +7,18 @@ import lombok.RequiredArgsConstructor;
 import org.cihan.elibrarian.auth.models.AuthResponse;
 import org.cihan.elibrarian.auth.models.LoginRequest;
 import org.cihan.elibrarian.auth.models.RegisterRequest;
+import org.cihan.elibrarian.cart.models.Cart;
+import org.cihan.elibrarian.cart.repository.CartRepository;
+import org.cihan.elibrarian.exceptions.GenException;
 import org.cihan.elibrarian.security.jwt.JwtService;
 import org.cihan.elibrarian.security.token.Token;
 import org.cihan.elibrarian.security.token.TokenType;
 import org.cihan.elibrarian.user.models.User;
 import org.cihan.elibrarian.user.repository.UserRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -20,25 +26,38 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 
+
 @Service
 @RequiredArgsConstructor
 public class AuthService {
+    private final Logger log = LoggerFactory.getLogger(AuthService.class);
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
+    private final CartRepository cartRepository;
 
     public AuthResponse login(LoginRequest loginRequest) {
-        authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        loginRequest.getUsername(),
-                        loginRequest.getPassword()
-                )
-        );
-        var user = userRepository.findByUsername(loginRequest.getUsername())
+        log.info("Login request: {}", loginRequest);
+        try {
+            authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(
+                            loginRequest.getUserName(),
+                            loginRequest.getPassword()
+                    )
+            );
+        } catch (Exception e) {
+            throw new GenException("Invalid username or password", HttpStatus.BAD_REQUEST.value());
+        }
+
+        var user = userRepository.findByUserName(loginRequest.getUserName())
                 .orElseThrow();
         var jwtToken = jwtService.generateToken(user);
         var refreshToken = jwtService.generateRefreshToken(user);
+        if (jwtToken != null && refreshToken != null) {
+            //kullanıcı girişi başarılı olduğunda kullanıcıya ait sepet oluşturulur
+            createCart(user);
+        }
         return AuthResponse.builder()
                 .accessToken(jwtToken)
                 .refreshToken(refreshToken)
@@ -49,14 +68,15 @@ public class AuthService {
         User user = User.builder()
                 .firstname(registerRequest.getFirstname())
                 .lastname(registerRequest.getLastname())
-                .username(registerRequest.getUsername())
+                .userName(registerRequest.getUserName())
                 .email(registerRequest.getEmail())
                 .password(passwordEncoder.encode(registerRequest.getPassword()))
                 .role(registerRequest.getRole())
                 .build();
-        Boolean existsByUser = userRepository.existsByUsernameAndEmail(user.getUsername(), user.getEmail());
+
+        Boolean existsByUser = userRepository.existsByUserNameOrEmail(user.getUsername(), user.getEmail());
         if (existsByUser) {
-            throw new RuntimeException("Username or email already taken");
+            throw new GenException("User already exists", HttpStatus.BAD_REQUEST.value());
         }
         User savedUser = userRepository.save(user);
         Token jwtToken = jwtService.generateToken(savedUser);
@@ -83,7 +103,7 @@ public class AuthService {
                 .build();
         username = jwtService.extractUsername(authHeader.substring(7));
         if (username != null) {
-            var user = this.userRepository.findByUsername(username).orElseThrow();
+            var user = this.userRepository.findByUserName(username).orElseThrow();
             if (jwtService.isTokenValid(refreshToken.getToken(), user)) {
                 Token accessToken = jwtService.generateToken(user);
                 var authResponse = AuthResponse.builder()
@@ -93,5 +113,17 @@ public class AuthService {
                 new ObjectMapper().writeValue(response.getOutputStream(), authResponse);
             }
         }
+    }
+
+    /**
+     * Kullanıcı sepetini oluşturur.
+     */
+    private void createCart(User user) {
+        var existsCar = cartRepository.existsByUser(user);
+        if (!existsCar) {
+            Cart cart = Cart.builder().user(user).build();
+            cartRepository.save(cart);
+        }
+
     }
 }

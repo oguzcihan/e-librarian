@@ -23,9 +23,11 @@ public class AuthenticationFilterJwt extends OncePerRequestFilter {
     private final JwtService jwtService;
     private final UserDetailsService userDetailsService;
 
+    /**
+     * Her istekte bu filtre cagirilir jwt kontrolü yapılır.
+     */
     @Override
     protected void doFilterInternal(@NonNull HttpServletRequest request, @NonNull HttpServletResponse response, @NonNull FilterChain filterChain) throws ServletException, IOException {
-
 
         if (isAuthApiRequest(request)) {
             filterChain.doFilter(request, response);
@@ -39,10 +41,10 @@ public class AuthenticationFilterJwt extends OncePerRequestFilter {
         }
 
         String jwtToken = extractJwtToken(authTokenHeader);
-        String userEmail = jwtService.extractUsername(jwtToken);
+        String userName = jwtService.extractUsername(jwtToken);
 
-        if (userEmail != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-            UserDetails userDetails = loadUserDetailsByUsername(userEmail);
+        if (userName != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+            UserDetails userDetails = loadUserDetailsByUsername(userName);
             if (isJwtTokenValid(jwtToken, userDetails)) {
                 authenticateUser(userDetails, request);
             }
@@ -59,8 +61,8 @@ public class AuthenticationFilterJwt extends OncePerRequestFilter {
         return authTokenHeader.substring(7);
     }
 
-    private UserDetails loadUserDetailsByUsername(String userEmail) {
-        return this.userDetailsService.loadUserByUsername(userEmail);
+    private UserDetails loadUserDetailsByUsername(String userName) {
+        return this.userDetailsService.loadUserByUsername(userName);
     }
 
     private boolean isJwtTokenValid(String jwtToken, UserDetails userDetails) {

@@ -14,11 +14,6 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.logout.LogoutHandler;
 
-import static org.cihan.elibrarian.user.models.Permission.*;
-import static org.cihan.elibrarian.user.models.Role.ADMIN;
-import static org.cihan.elibrarian.user.models.Role.USER;
-import static org.springframework.http.HttpMethod.*;
-import static org.springframework.http.HttpMethod.DELETE;
 import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
 
 @Configuration
@@ -51,11 +46,6 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(req ->
                         req.requestMatchers(URL_WHITE_LIST).permitAll()
-                                .requestMatchers("/api/v1/management/**").hasAnyRole(ADMIN.name(), USER.name())
-                                .requestMatchers(GET, "/api/v1/management/**").hasAnyAuthority(ADMIN_READ.name(), USER_READ.name())
-                                .requestMatchers(POST, "/api/v1/management/**").hasAnyAuthority(ADMIN_CREATE.name(), USER_CREATE.name())
-                                .requestMatchers(PUT, "/api/v1/management/**").hasAnyAuthority(ADMIN_UPDATE.name(), USER_UPDATE.name())
-                                .requestMatchers(DELETE, "/api/v1/management/**").hasAnyAuthority(ADMIN_DELETE.name(), USER_DELETE.name())
                                 .anyRequest()
                                 .authenticated()
                 )

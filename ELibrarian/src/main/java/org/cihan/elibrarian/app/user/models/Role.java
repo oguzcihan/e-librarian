@@ -1,4 +1,4 @@
-package org.cihan.elibrarian.user.models;
+package org.cihan.elibrarian.app.user.models;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import static org.cihan.elibrarian.user.models.Permission.*;
+import static org.cihan.elibrarian.app.user.models.Permission.*;
 
 @Getter
 @RequiredArgsConstructor

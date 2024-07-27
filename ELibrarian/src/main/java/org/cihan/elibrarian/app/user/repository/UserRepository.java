@@ -1,6 +1,6 @@
-package org.cihan.elibrarian.user.repository;
+package org.cihan.elibrarian.app.user.repository;
 
-import org.cihan.elibrarian.user.models.User;
+import org.cihan.elibrarian.app.user.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

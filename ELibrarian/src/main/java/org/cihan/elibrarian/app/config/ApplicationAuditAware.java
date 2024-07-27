@@ -1,6 +1,6 @@
 package org.cihan.elibrarian.app.config;
 
-import org.cihan.elibrarian.user.models.User;
+import org.cihan.elibrarian.app.user.models.User;
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;

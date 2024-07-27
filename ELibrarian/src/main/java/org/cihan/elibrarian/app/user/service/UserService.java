@@ -1,9 +1,9 @@
-package org.cihan.elibrarian.user.service;
+package org.cihan.elibrarian.app.user.service;
 
 import lombok.RequiredArgsConstructor;
-import org.cihan.elibrarian.user.models.ChangePasswordRequest;
-import org.cihan.elibrarian.user.models.User;
-import org.cihan.elibrarian.user.repository.UserRepository;
+import org.cihan.elibrarian.app.user.models.ChangePasswordRequest;
+import org.cihan.elibrarian.app.user.models.User;
+import org.cihan.elibrarian.app.user.repository.UserRepository;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

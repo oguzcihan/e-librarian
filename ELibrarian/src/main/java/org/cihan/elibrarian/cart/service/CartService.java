@@ -10,7 +10,7 @@ import org.cihan.elibrarian.cart.models.CartResponse;
 import org.cihan.elibrarian.cart.repository.CartItemRepository;
 import org.cihan.elibrarian.cart.repository.CartRepository;
 import org.cihan.elibrarian.exceptions.GenException;
-import org.cihan.elibrarian.app.user.models.User;
+import org.cihan.elibrarian.user.models.User;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;

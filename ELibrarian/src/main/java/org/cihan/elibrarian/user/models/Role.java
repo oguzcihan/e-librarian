@@ -1,4 +1,4 @@
-package org.cihan.elibrarian.app.user.models;
+package org.cihan.elibrarian.user.models;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -8,29 +8,27 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import static org.cihan.elibrarian.app.user.models.Permission.*;
-
 @Getter
 @RequiredArgsConstructor
 public enum Role {
     USER(
             Set.of(
-                    USER_READ,
-                    USER_UPDATE,
-                    USER_DELETE,
-                    USER_CREATE
+                    Permission.USER_READ,
+                    Permission.USER_UPDATE,
+                    Permission.USER_DELETE,
+                    Permission.USER_CREATE
             )
     ),
     ADMIN(
             Set.of(
-                    ADMIN_READ,
-                    ADMIN_UPDATE,
-                    ADMIN_DELETE,
-                    ADMIN_CREATE,
-                    USER_READ,
-                    USER_UPDATE,
-                    USER_DELETE,
-                    USER_CREATE
+                    Permission.ADMIN_READ,
+                    Permission.ADMIN_UPDATE,
+                    Permission.ADMIN_DELETE,
+                    Permission.ADMIN_CREATE,
+                    Permission.USER_READ,
+                    Permission.USER_UPDATE,
+                    Permission.USER_DELETE,
+                    Permission.USER_CREATE
             )
     );
 

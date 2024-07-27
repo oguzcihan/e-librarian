@@ -1,7 +1,7 @@
 package org.cihan.elibrarian.app.config;
 
 import lombok.RequiredArgsConstructor;
-import org.cihan.elibrarian.app.user.repository.UserRepository;
+import org.cihan.elibrarian.user.repository.UserRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.domain.AuditorAware;

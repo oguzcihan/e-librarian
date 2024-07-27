@@ -1,7 +1,7 @@
 package org.cihan.elibrarian.cart.repository;
 
 import org.cihan.elibrarian.cart.models.Cart;
-import org.cihan.elibrarian.app.user.models.User;
+import org.cihan.elibrarian.user.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

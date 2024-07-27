@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.cihan.elibrarian.app.user.models.Role;
+import org.cihan.elibrarian.user.models.Role;
 
 @Data
 @Builder

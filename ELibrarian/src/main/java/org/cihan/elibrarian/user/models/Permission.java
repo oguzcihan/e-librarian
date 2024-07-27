@@ -1,4 +1,4 @@
-package org.cihan.elibrarian.app.user.models;
+package org.cihan.elibrarian.user.models;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

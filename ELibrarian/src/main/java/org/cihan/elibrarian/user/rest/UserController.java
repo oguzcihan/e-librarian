@@ -1,8 +1,8 @@
-package org.cihan.elibrarian.app.user.rest;
+package org.cihan.elibrarian.user.rest;
 
 import lombok.RequiredArgsConstructor;
-import org.cihan.elibrarian.app.user.models.ChangePasswordRequest;
-import org.cihan.elibrarian.app.user.service.UserService;
+import org.cihan.elibrarian.user.models.ChangePasswordRequest;
+import org.cihan.elibrarian.user.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.RequestBody;
